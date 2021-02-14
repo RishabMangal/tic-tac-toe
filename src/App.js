@@ -125,16 +125,19 @@ function App() {
         if (i === 4) {
           tempBox = { ...box, points: 200 };
         } else if (i % 2 === 0) {
-          tempBox = { ...box, points: 50 };
-        } else {
           tempBox = { ...box, points: 100 };
+        } else {
+          tempBox = { ...box, points: 50 };
         }
         tempBoxes.push(tempBox);
       });
       setBoxes(tempBoxes);
     };
-    initPoints();
-  }, []);
+    if (boxes[0].points === 0) initPoints();
+    if (winner || isGameOver) {
+      setTimeout(resetHandler, 3000);
+    }
+  }, [winner, isGameOver]);
 
   const resetHandler = () => {
     resetBoxes();
@@ -167,10 +170,10 @@ function App() {
           numberOfPieces={500}
         />
       )} */}
-      <h1 className="display-4 pb-2 px-4 pt-4 ">
-        <span style={{ color: "red" }}>Tic </span>
-        <span className="text-primary">Tac </span>
-        <span style={{ color: "yellow" }}>Toe </span>
+      <h1 className="display-3 pb-2 px-4" style={{ letterSpacing: "8px" }}>
+        <span style={{ color: "red" }}>TIC </span>
+        <span className="text-primary">TAC </span>
+        <span style={{ color: "yellow" }}>TOE </span>
         ..!
       </h1>
       <div className="panel pb-4 px-4 pt-2">

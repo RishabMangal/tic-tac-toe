@@ -17,7 +17,22 @@ const Box = ({ index, value, onClick }) => {
             : index % 2
             ? "#f1f1f1"
             : "#efefef",
-        border: index % 2 ? "1px solid green" : "1px solid blue",
+        borderLeft:
+          index === 1 || index === 4 || index === 7
+            ? "3px solid black"
+            : "0px solid white",
+        borderRight:
+          index === 1 || index === 4 || index === 7
+            ? "3px solid black"
+            : "0px solid white",
+        borderTop:
+          index === 3 || index === 4 || index === 5
+            ? "3px solid black"
+            : "0px solid white",
+        borderBottom:
+          index === 3 || index === 4 || index === 5
+            ? "3px solid black"
+            : "0px solid white",
       }}
       onClick={onClick}
     >
