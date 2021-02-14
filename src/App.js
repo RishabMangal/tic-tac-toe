@@ -147,11 +147,31 @@ function App() {
 
   return (
     <div className="App">
-      {winner && <Confetti gravity={0.4} numberOfPieces={500}></Confetti>}
+      {winner && (
+        <Confetti gravity={0.4} numberOfPieces={500} wind={0.05}></Confetti>
+      )}
+      {/* {winner && (
+        <Confetti
+          drawShape={(ctx) => {
+            ctx.beginPath();
+            for (let i = 0; i < 22; i++) {
+              const angle = 0.35 * i;
+              const x = (0.2 + 1.5 * angle) * Math.cos(angle);
+              const y = (0.2 + 1.5 * angle) * Math.sin(angle);
+              ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+            ctx.closePath();
+          }}
+          gravity={0.4}
+          numberOfPieces={500}
+        />
+      )} */}
       <h1 className="display-4 pb-2 px-4 pt-4 ">
-        <span className="text-danger">Tic </span>
+        <span style={{ color: "red" }}>Tic </span>
         <span className="text-primary">Tac </span>
-        <span className="text-warning">Toe </span>..!
+        <span style={{ color: "yellow" }}>Toe </span>
+        ..!
       </h1>
       <div className="panel pb-4 px-4 pt-2">
         {winner ? (

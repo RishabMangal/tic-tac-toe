@@ -33,7 +33,11 @@ function Footer() {
           </div>
           <div className="col-sm-6">
             <p className="text-secondary text-right text-weight-normal lead">
-              Developed By Rishab Mangal
+              Developed By{" "}
+              <a href="https://rishabmangal.netlify.app" target="blank">
+                {" "}
+                Rishab Mangal
+              </a>
               <br /> Version 1.0.0
             </p>
           </div>
