@@ -3,7 +3,7 @@ import "./App.css";
 import Footer from "./Footer";
 import Confetti from "react-confetti";
 import Box from "./Box";
-function App() {
+const App = () => {
   const [boxes, setBoxes] = useState(
     Array(9).fill({ char: null, isChecked: false, points: 0 })
   );
@@ -37,50 +37,50 @@ function App() {
     return null;
   };
 
-  const makeMove = (i) => {
-    let newBoxes = [...boxes];
-    let obj = { char: isX ? "X" : "O", isChecked: true };
-    newBoxes[i] = { ...obj };
-    setIsX(!isX);
-    setBoxes(newBoxes);
-  };
+  // const makeMove = (i) => {
+  //   let newBoxes = [...boxes];
+  //   let obj = { char: isX ? "X" : "O", isChecked: true };
+  //   newBoxes[i] = { ...obj };
+  //   setIsX(!isX);
+  //   setBoxes(newBoxes);
+  // };
 
-  const computerMove = (userI) => {
-    var compI = null;
-    for (let i = 0; i < lines.length; i++) {
-      if (lines[i][0] === userI) {
-        if (boxes[compI]?.isChecked === false) {
-          compI = lines[i][1];
-          console.log(
-            `found ${lines[i][0]} & ${userI} at : 0 and setting cI: ${compI} ${lines[i]}`
-          );
-        }
-        makeMove(compI);
-        break;
-      } else if (lines[i][1] === userI) {
-        compI = lines[i][2];
-        console.log(
-          `found ${lines[i][1]} & ${userI} at : 1 and setting cI: ${compI}`
-        );
-        break;
-      } else if (lines[i][2] === userI) {
-        compI = lines[i + 1][2];
-        console.log(
-          `found ${lines[i][2]} & ${userI} at : 1 and setting cI: ${compI}`
-        );
-        break;
-      } else {
-        console.log("Not found");
-      }
-    }
-    console.log("CompI: ", compI);
-  };
+  // const computerMove = (userI) => {
+  //   var compI = null;
+  //   for (let i = 0; i < lines.length; i++) {
+  //     if (lines[i][0] === userI) {
+  //       if (boxes[compI]?.isChecked === false) {
+  //         compI = lines[i][1];
+  //         console.log(
+  //           `found ${lines[i][0]} & ${userI} at : 0 and setting cI: ${compI} ${lines[i]}`
+  //         );
+  //       }
+  //       makeMove(compI);
+  //       break;
+  //     } else if (lines[i][1] === userI) {
+  //       compI = lines[i][2];
+  //       console.log(
+  //         `found ${lines[i][1]} & ${userI} at : 1 and setting cI: ${compI}`
+  //       );
+  //       break;
+  //     } else if (lines[i][2] === userI) {
+  //       compI = lines[i + 1][2];
+  //       console.log(
+  //         `found ${lines[i][2]} & ${userI} at : 1 and setting cI: ${compI}`
+  //       );
+  //       break;
+  //     } else {
+  //       console.log("Not found");
+  //     }
+  //   }
+  //   console.log("CompI: ", compI);
+  // };
 
-  const handleClick = (i) => {
+  const userMove = (i) => {
     if (!winner) {
-      let newBoxes = [...boxes];
+      let newBoxes = boxes;
       let obj = { ...newBoxes[i], char: isX ? "X" : "O", isChecked: true };
-      newBoxes[i] = { ...obj };
+      newBoxes[i] = obj;
       isX ? setXScore(xScore + obj.points) : setOScore(oScore + obj.points);
       setIsX(!isX);
       setBoxes(newBoxes);
@@ -88,7 +88,42 @@ function App() {
       checkGameOver(newBoxes);
       setWinner(isWinner);
     }
-    // computerMove(i);
+  };
+
+  const comMove = () => {
+    if (!winner) {
+      let comI = null;
+      if (boxes[4].isChecked === false) {
+        comI = 4;
+      } else {
+        if (boxes[0].isChecked === false) {
+          comI = 0;
+        } else if (boxes[2].isChecked === false) {
+          comI = 2;
+        } else if (boxes[6].isChecked === false) {
+          comI = 6;
+        } else if (boxes[8].isChecked === false) {
+          comI = 8;
+        } else if (boxes[1].isChecked === false) {
+          comI = 1;
+        } else if (boxes[3].isChecked === false) {
+          comI = 3;
+        } else if (boxes[5].isChecked === false) {
+          comI = 5;
+        } else {
+          comI = 7;
+        }
+      }
+      let newBoxes = boxes;
+      let obj = { ...newBoxes[comI], char: isX ? "X" : "O", isChecked: true };
+      newBoxes[comI] = obj;
+      isX ? setXScore(xScore + obj.points) : setOScore(oScore + obj.points);
+      setIsX(!isX);
+      setBoxes(newBoxes);
+      let isWinner = checkWinner(newBoxes);
+      checkGameOver(newBoxes);
+      setWinner(isWinner);
+    }
   };
 
   const checkGameOver = (boxes) => {
@@ -135,9 +170,12 @@ function App() {
     };
     if (boxes[0].points === 0) initPoints();
     if (winner || isGameOver) {
-      setTimeout(resetHandler, 3000);
+      setTimeout(resetHandler, 4000);
     }
-  }, [winner, isGameOver]);
+    // else if (!isX) {
+    //   comMove();
+    // }
+  }, [winner, isGameOver, isX]);
 
   const resetHandler = () => {
     resetBoxes();
@@ -208,7 +246,7 @@ function App() {
           <Box
             key={i}
             index={i}
-            onClick={() => (box.isChecked ? null : handleClick(i))}
+            onClick={() => (box.isChecked ? null : userMove(i))}
             value={box}
           ></Box>
         ))}
@@ -216,6 +254,6 @@ function App() {
       <Footer></Footer>
     </div>
   );
-}
+};
 
 export default App;
