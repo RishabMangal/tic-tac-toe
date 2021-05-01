@@ -153,6 +153,7 @@ const App = () => {
   };
 
   useEffect(() => {
+    console.log("UseEffect");
     const initPoints = () => {
       let tempBoxes = [];
       boxes.forEach((box, i) => {
@@ -170,14 +171,15 @@ const App = () => {
     };
     if (boxes[0].points === 0) initPoints();
     if (winner || isGameOver) {
-      setTimeout(resetHandler, 4000);
+      console.log("I m calling reestHandler because: ", winner, isGameOver);
+      setTimeout(resetHandler, winner ? 4000 : 2000);
+    } else if (!isX) {
+      comMove();
     }
-    // else if (!isX) {
-    //   comMove();
-    // }
   }, [winner, isGameOver, isX]);
 
   const resetHandler = () => {
+    console.log("reseting...");
     resetBoxes();
     setIsX(true);
     setXScore(0);

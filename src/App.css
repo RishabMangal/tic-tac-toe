@@ -20,9 +20,129 @@ body {
 }
 
 
-@media screen and (max-width:530px) {
+@media screen and (max-width:730px) {
   .grid {
     width: 100% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:731px) and (max-width:770px) {
+  .grid {
+    width: 95% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:771px) and (max-width:815px) {
+  .grid {
+    width: 90% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:816px) and (max-width:855px) {
+  .grid {
+    width: 85% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:856px) and (max-width:910px) {
+  .grid {
+    width: 80% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:911px) and (max-width:975px) {
+  .grid {
+    width: 75% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:976px) and (max-width:1045px) {
+  .grid {
+    width: 70% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:1046px) and (max-width:1115px) {
+  .grid {
+    width: 65% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:1116px) and (max-width:1225px) {
+  .grid {
+    width: 60% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:1226px)and (max-width:1325px) {
+  .grid {
+    width: 55% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:1326px)and (max-width:1465px) {
+  .grid {
+    width: 50% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:1466px)and (max-width:1630px) {
+  .grid {
+    width: 45% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:1631px)and (max-width:1679px) {
+  .grid {
+    width: 40% !important
   }
 
   /* .points{
