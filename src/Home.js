@@ -153,7 +153,6 @@ const Home = () => {
   };
 
   useEffect(() => {
-    console.log("UseEffect");
     const initPoints = () => {
       let tempBoxes = [];
       boxes.forEach((box, i) => {
