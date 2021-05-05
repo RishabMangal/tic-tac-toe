@@ -1,19 +1,9 @@
+body {
+  overflow: hidden;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,15 +14,226 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.w-10 {
+  width: 20px;
+  /* background-color: red;  */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+@media screen and (max-width:730px) {
+  .grid {
+    width: 100% !important
   }
-  to {
-    transform: rotate(360deg);
-  }
+
+  /* .points{
+    font-size: 15px;
+  } */
 }
+
+@media screen and (min-width:731px) and (max-width:770px) {
+  .grid {
+    width: 95% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:771px) and (max-width:815px) {
+  .grid {
+    width: 90% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:816px) and (max-width:855px) {
+  .grid {
+    width: 85% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:856px) and (max-width:910px) {
+  .grid {
+    width: 80% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:911px) and (max-width:975px) {
+  .grid {
+    width: 75% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:976px) and (max-width:1045px) {
+  .grid {
+    width: 70% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:1046px) and (max-width:1115px) {
+  .grid {
+    width: 65% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:1116px) and (max-width:1225px) {
+  .grid {
+    width: 60% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:1226px)and (max-width:1325px) {
+  .grid {
+    width: 55% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:1326px)and (max-width:1465px) {
+  .grid {
+    width: 50% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:1466px)and (max-width:1630px) {
+  .grid {
+    width: 45% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+@media screen and (min-width:1631px)and (max-width:1679px) {
+  .grid {
+    width: 40% !important
+  }
+
+  /* .points{
+    font-size: 15px;
+  } */
+}
+
+
+
+/* .points{
+    font-size: 15px;
+  } */
+
+
+.score-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  background-color: rgb(221, 187, 255);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.x-score {
+  border-top-left-radius: 10px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: #0078D7;
+  color: black;
+  /* margin: 0 2rem */
+}
+
+.o-score {
+  background-color: yellow;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color: black;
+  border-top-right-radius: 10px;
+}
+
+.grid {
+  display: flex;
+  width: 37%;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.box {
+  padding-top: 30%;
+  width: 30%;
+  /* margin: 1px; */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  position: relative
+}
+
+.points {
+  font-size: 1.05rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1px;
+  padding: 1px;
+  color: rgb(0, 7, 112);
+  font-weight: 500;
+}
+
+.panel {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 2rem;
+  white-space: nowrap;
+}
+
+footer {
+  width: 100vw;
+  margin-top: auto;
+  /* position: absolute; */
+  /* bottom: 0; */
+}
+
+/* .btn {
+  padding: 10px;
+  margin-left: 20px;
+  align-items: center;
+} */
