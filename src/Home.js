@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import "./App.css";
-import Footer from "./Footer";
-import Confetti from "react-confetti";
-import Box from "./Box";
+import React, { useEffect, useState } from 'react'
+import './App.css'
+import Footer from './Footer'
+import Confetti from 'react-confetti'
+import Box from './Box'
 const Home = () => {
   const [boxes, setBoxes] = useState(
     Array(9).fill({ char: null, isChecked: false, points: 0 })
-  );
-  const [isX, setIsX] = useState(true);
-  const [winner, setWinner] = useState(null);
-  const [isGameOver, setIsGameOver] = useState(null);
-  const [xScore, setXScore] = useState(0);
-  const [oScore, setOScore] = useState(0);
+  )
+  const [isX, setIsX] = useState(true)
+  const [winner, setWinner] = useState(null)
+  const [isGameOver, setIsGameOver] = useState(null)
+  const [xScore, setXScore] = useState(0)
+  const [oScore, setOScore] = useState(0)
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -20,22 +20,22 @@ const Home = () => {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6],
-  ];
+    [2, 4, 6]
+  ]
 
-  const checkWinner = (boxes) => {
+  const checkWinner = boxes => {
     for (let i = 0; i < lines.length; i++) {
-      const [x, y, z] = lines[i];
+      const [x, y, z] = lines[i]
       if (
         boxes[x].char &&
         boxes[x].char === boxes[y].char &&
         boxes[x].char === boxes[z].char
       ) {
-        return boxes[x].char;
+        return boxes[x].char
       }
     }
-    return null;
-  };
+    return null
+  }
 
   // const makeMove = (i) => {
   //   let newBoxes = [...boxes];
@@ -76,119 +76,119 @@ const Home = () => {
   //   console.log("CompI: ", compI);
   // };
 
-  const userMove = (i) => {
+  const userMove = i => {
     if (!winner) {
-      let newBoxes = boxes;
-      let obj = { ...newBoxes[i], char: isX ? "X" : "O", isChecked: true };
-      newBoxes[i] = obj;
-      isX ? setXScore(xScore + obj.points) : setOScore(oScore + obj.points);
-      setIsX(!isX);
-      setBoxes(newBoxes);
-      let isWinner = checkWinner(newBoxes);
-      checkGameOver(newBoxes);
-      setWinner(isWinner);
+      let newBoxes = boxes
+      let obj = { ...newBoxes[i], char: isX ? 'X' : 'O', isChecked: true }
+      newBoxes[i] = obj
+      isX ? setXScore(xScore + obj.points) : setOScore(oScore + obj.points)
+      setIsX(!isX)
+      setBoxes(newBoxes)
+      let isWinner = checkWinner(newBoxes)
+      checkGameOver(newBoxes)
+      setWinner(isWinner)
     }
-  };
+  }
 
   const comMove = () => {
     if (!winner) {
-      let comI = null;
+      let comI = null
       if (boxes[4].isChecked === false) {
-        comI = 4;
+        comI = 4
       } else {
         if (boxes[0].isChecked === false) {
-          comI = 0;
+          comI = 0
         } else if (boxes[2].isChecked === false) {
-          comI = 2;
+          comI = 2
         } else if (boxes[6].isChecked === false) {
-          comI = 6;
+          comI = 6
         } else if (boxes[8].isChecked === false) {
-          comI = 8;
+          comI = 8
         } else if (boxes[1].isChecked === false) {
-          comI = 1;
+          comI = 1
         } else if (boxes[3].isChecked === false) {
-          comI = 3;
+          comI = 3
         } else if (boxes[5].isChecked === false) {
-          comI = 5;
+          comI = 5
         } else {
-          comI = 7;
+          comI = 7
         }
       }
-      let newBoxes = boxes;
-      let obj = { ...newBoxes[comI], char: isX ? "X" : "O", isChecked: true };
-      newBoxes[comI] = obj;
-      isX ? setXScore(xScore + obj.points) : setOScore(oScore + obj.points);
-      setIsX(!isX);
-      setBoxes(newBoxes);
-      let isWinner = checkWinner(newBoxes);
-      checkGameOver(newBoxes);
-      setWinner(isWinner);
+      let newBoxes = boxes
+      let obj = { ...newBoxes[comI], char: isX ? 'X' : 'O', isChecked: true }
+      newBoxes[comI] = obj
+      isX ? setXScore(xScore + obj.points) : setOScore(oScore + obj.points)
+      setIsX(!isX)
+      setBoxes(newBoxes)
+      let isWinner = checkWinner(newBoxes)
+      checkGameOver(newBoxes)
+      setWinner(isWinner)
     }
-  };
+  }
 
-  const checkGameOver = (boxes) => {
-    let isGameOver = true;
-    boxes.forEach((box) => {
+  const checkGameOver = boxes => {
+    let isGameOver = true
+    boxes.forEach(box => {
       if (box.isChecked === false) {
-        isGameOver = false;
+        isGameOver = false
       }
-    });
-    setIsGameOver(isGameOver);
-  };
+    })
+    setIsGameOver(isGameOver)
+  }
 
   const resetBoxes = () => {
-    let tempBoxes = [];
+    let tempBoxes = []
     boxes.forEach((box, i) => {
-      let tempBox = {};
+      let tempBox = {}
       if (i === 4) {
-        tempBox = { char: null, isChecked: false, points: 200 };
+        tempBox = { char: null, isChecked: false, points: 200 }
       } else if (i % 2 === 0) {
-        tempBox = { char: null, isChecked: false, points: 50 };
+        tempBox = { char: null, isChecked: false, points: 50 }
       } else {
-        tempBox = { char: null, isChecked: false, points: 100 };
+        tempBox = { char: null, isChecked: false, points: 100 }
       }
-      tempBoxes.push(tempBox);
-    });
-    setBoxes(tempBoxes);
-  };
+      tempBoxes.push(tempBox)
+    })
+    setBoxes(tempBoxes)
+  }
 
   useEffect(() => {
     const initPoints = () => {
-      let tempBoxes = [];
+      let tempBoxes = []
       boxes.forEach((box, i) => {
-        let tempBox = {};
+        let tempBox = {}
         if (i === 4) {
-          tempBox = { ...box, points: 200 };
+          tempBox = { ...box, points: 200 }
         } else if (i % 2 === 0) {
-          tempBox = { ...box, points: 100 };
+          tempBox = { ...box, points: 100 }
         } else {
-          tempBox = { ...box, points: 50 };
+          tempBox = { ...box, points: 50 }
         }
-        tempBoxes.push(tempBox);
-      });
-      setBoxes(tempBoxes);
-    };
-    if (boxes[0].points === 0) initPoints();
-    if (winner || isGameOver) {
-      console.log("I m calling reestHandler because: ", winner, isGameOver);
-      setTimeout(resetHandler, winner ? 4000 : 2000);
-    } else if (!isX) {
-      comMove();
+        tempBoxes.push(tempBox)
+      })
+      setBoxes(tempBoxes)
     }
-  }, [winner, isGameOver, isX]);
+    if (boxes[0].points === 0) initPoints()
+    if (winner || isGameOver) {
+      console.log('I m calling reestHandler because: ', winner, isGameOver)
+      setTimeout(resetHandler, winner ? 4000 : 2000)
+    } else if (!isX) {
+      comMove()
+    }
+  }, [winner, isGameOver, isX])
 
   const resetHandler = () => {
-    console.log("reseting...");
-    resetBoxes();
-    setIsX(true);
-    setXScore(0);
-    setOScore(0);
-    setWinner(null);
-    setIsGameOver(false);
-  };
+    console.log('reseting...')
+    resetBoxes()
+    setIsX(true)
+    setXScore(0)
+    setOScore(0)
+    setWinner(null)
+    setIsGameOver(false)
+  }
 
   return (
-    <div className="App">
+    <div className='App'>
       {winner && (
         <Confetti gravity={0.4} numberOfPieces={500} wind={0.05}></Confetti>
       )}
@@ -209,40 +209,40 @@ const Home = () => {
           numberOfPieces={500}
         />
       )} */}
-      <h1 className="display-3 pb-2 px-4" style={{ letterSpacing: "8px" }}>
-        <span style={{ color: "red" }}>TIC </span>
-        <span className="text-primary">TAC </span>
-        <span style={{ color: "yellow" }}>TOE </span>
+      <h1 className='display-3 pb-2 px-4' style={{ letterSpacing: '8px' }}>
+        <span style={{ color: 'red' }}>TIC </span>
+        <span className='text-primary'>TAC </span>
+        <span style={{ color: 'yellow' }}>TOE </span>
         ..!
       </h1>
-      <div className="panel pb-4 px-4 pt-2">
+      <div className='panel pb-4 px-4 pt-2'>
         {winner ? (
-          <div className="text-success">{winner + " Won"}</div>
+          <div className='text-success'>{winner + ' Won'}</div>
         ) : isGameOver ? (
-          <div className="text-danger">Game Over</div>
+          <div className='text-danger'>Game Over</div>
         ) : (
-          <div className="text-light">
+          <div className='text-light'>
             {isX ? (
-              <span className="text-primary mr-1 w-10">X's </span>
+              <span className='text-primary mr-1 w-10'>X's </span>
             ) : (
-              <span className="text-warning mr-1 w-10">O's </span>
+              <span className='text-warning mr-1 w-10'>O's </span>
             )}
             Turn
           </div>
         )}
-        <button onClick={resetHandler} className="ml-4 btn btn-primary">
+        <button onClick={resetHandler} className='ml-4 btn btn-primary'>
           Reset / Play Again
         </button>
       </div>
-      <div className="score-card">
-        <div className="x-score text-light">
-          X : <span className="text-light">{xScore}</span>
+      <div className='score-card'>
+        <div className='x-score text-light'>
+          X : <span className='text-light'>{xScore}</span>
         </div>
-        <div className="o-score">
-          O : <span className="text-dark">{oScore}</span>
+        <div className='o-score'>
+          O : <span className='text-dark'>{oScore}</span>
         </div>
       </div>
-      <div className="grid">
+      <div className='grid'>
         {boxes.map((box, i) => (
           <Box
             key={i}
@@ -254,7 +254,7 @@ const Home = () => {
       </div>
       <Footer></Footer>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
